@@ -1,12 +1,30 @@
 import React from "react";
 
-import { Image, Container } from "./Car.styled";
+import {
+	Image,
+	Container,
+	Details,
+	Description,
+	FlipCard,
+	FlipCardFront,
+	FlipCardBack,
+} from "./Car.styled";
 
 const Car = ({ description, image, name, speed }) => {
 	return (
 		<Container>
-			<h4>{name}</h4>
-			<Image src={image} alt={name} />
+			<FlipCard>
+				<FlipCardFront>
+					<h4>{name}</h4>
+					<Image src={image} alt={name} />
+				</FlipCardFront>
+				<FlipCardBack>
+					<Details img={image}>
+						<Description>{description}</Description>
+						<p>Speed: {speed}</p>
+					</Details>
+				</FlipCardBack>
+			</FlipCard>
 		</Container>
 	);
 };
