@@ -1,7 +1,18 @@
 import React from "react";
+import data from "./data/data.json";
+
+import { MainContainer } from "./App.styled";
+
+import CarsInfo from "./components/CarsInfo/CarsInfo";
 
 function App() {
-	return <div></div>;
+	const { cars } = data;
+
+	return (
+		<MainContainer>
+			<CarsInfo cars={cars} />;
+		</MainContainer>
+	);
 }
 
 export default App;
