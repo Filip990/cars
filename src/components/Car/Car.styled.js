@@ -44,6 +44,7 @@ export const Details = styled.div`
 	background-position: center;
 	background-size: 100%;
 	background-repeat: no-repeat;
+	background-blend-mode: darken;
 	background-image: url(${(props) => props.img}),
 		linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 `;
