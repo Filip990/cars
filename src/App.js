@@ -10,7 +10,7 @@ function App() {
 
 	return (
 		<MainContainer>
-			<CarsInfo cars={cars} />;
+			<CarsInfo cars={cars} />
 		</MainContainer>
 	);
 }
