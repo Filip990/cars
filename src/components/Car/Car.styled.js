@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Image = styled.img`
-	width: 25vw;
+	width: 20vw;
 `;
 
 export const FlipCard = styled.div`
@@ -15,7 +15,7 @@ export const FlipCard = styled.div`
 
 export const Container = styled.div`
 	box-shadow: 0 0 0 1px black;
-	height: 24vw;
+	height: 20vw;
 	padding: 12px;
 	&:hover ${FlipCard} {
 		transform: rotateX(180deg);

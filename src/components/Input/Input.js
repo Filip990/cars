@@ -2,13 +2,13 @@ import React from "react";
 
 import { SearchInput } from "./Input.styled";
 
-const Input = ({ value, onChange }) => {
+const Input = ({ value, onChange, type, placeholder }) => {
 	return (
 		<SearchInput
-			type="search"
+			type={type}
 			value={value}
 			onChange={onChange}
-			placeholder="Search"
+			placeholder={placeholder}
 		/>
 	);
 };
