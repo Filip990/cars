@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
+import { addCarToTestScale } from "../../store/actionCreators";
 
 import {
 	Image,
@@ -11,8 +14,14 @@ import {
 } from "./Car.styled";
 
 const Car = ({ description, image, name, speed }) => {
+	const dispatch = useDispatch();
+
+	const addCar = () => {
+		dispatch(addCarToTestScale({ name: name, speed: speed, image: image }));
+	};
+
 	return (
-		<Container>
+		<Container onClick={addCar}>
 			<FlipCard>
 				<FlipCardFront>
 					<h4>{name}</h4>
