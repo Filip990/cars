@@ -29,12 +29,8 @@ export const FlipCardFront = styled.div`
 	backface-visibility: hidden;
 `;
 
-export const FlipCardBack = styled.div`
-	position: absolute;
+export const FlipCardBack = styled(FlipCardFront)`
 	transform: rotateX(180deg);
-	width: 100%;
-	height: 100%;
-	backface-visibility: hidden;
 `;
 
 export const Details = styled.div`

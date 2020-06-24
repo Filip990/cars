@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import Car from "../Car/Car";
-import Input from "../Input/Input";
 
-import { Container } from "./CarsInfo.styled";
+import { Container, SearchInput } from "./CarsInfo.styled";
 
 const CarsInfo = () => {
 	const { cars } = useSelector((state) => state);
@@ -20,7 +19,7 @@ const CarsInfo = () => {
 
 	return (
 		<>
-			<Input
+			<SearchInput
 				value={searchTerm}
 				type="search"
 				onChange={handleInputChange}

@@ -1,10 +1,9 @@
 import React from "react";
 
-import { SearchInput } from "./Input.styled";
-
-const Input = ({ value, onChange, type, placeholder }) => {
+const Input = ({ className, value, onChange, type, placeholder }) => {
 	return (
-		<SearchInput
+		<input
+			className={className}
 			type={type}
 			value={value}
 			onChange={onChange}
