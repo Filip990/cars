@@ -1,10 +1,16 @@
 import React from "react";
 
-const Button = ({ className, title, onClickHandler, disabled }) => {
+import { ButtonBase } from "./Button.styled";
+
+const Button = ({ className, children, onClickHandler, isDisabled }) => {
 	return (
-		<button className={className} onClick={onClickHandler} disabled={disabled}>
-			{title}
-		</button>
+		<ButtonBase
+			className={className}
+			onClick={onClickHandler}
+			disabled={isDisabled}
+		>
+			{children}
+		</ButtonBase>
 	);
 };
 
