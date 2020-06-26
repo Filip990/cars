@@ -100,7 +100,11 @@ const Scale = () => {
 	}, [trafficLights]);
 
 	const updateAnimationSpeed = (e) => {
-		setAnimationSpeed(e.target.value);
+		const { value } = e.target;
+		// prevent zero and negative numbers
+		if (value >= 1) {
+			setAnimationSpeed(value);
+		}
 	};
 
 	return (
