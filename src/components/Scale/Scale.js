@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Button from "../Button/Button";
 import DistanceMeter from "../DistanceMeter/DistanceMeter";
 import SpeedLimit from "../SpeedLimit/SpeedLimit";
+import TrafficLight from "../TrafficLight/TrafficLight";
 import TrackGrid from "../TrackGrid/TrackGrid";
 
 import {
@@ -16,9 +17,12 @@ import {
 } from "./Scale.styled";
 
 const Scale = () => {
-	const { selectedCars, distance, speedLimits } = useSelector((state) => state);
+	const { selectedCars, distance, speedLimits, trafficLights } = useSelector(
+		(state) => state
+	);
 	const [carPositions, setCarPositions] = useState({});
 	const [isActive, setActive] = useState(false);
+	const [redLights, setRedLights] = useState({});
 
 	// useRef is here, not to be attached to the DOM, but because changing it's "current" property
 	// won't trigger the re-render
@@ -40,6 +44,19 @@ const Scale = () => {
 				let newCarPosition =
 					(prevPositions[car.id] || 0) + speedLimit / trackLength;
 
+				const redLightsOn = Object.entries(redLights).reduce(
+					(acc, [position, isActive]) => {
+						if (isActive) acc.push(+position);
+
+						return acc;
+					},
+					[]
+				);
+
+				if (redLightsOn.includes(Math.floor(newCarPosition))) {
+					newCarPosition = prevPositions[car.id];
+				}
+
 				return {
 					...acc,
 					[car.id]: newCarPosition > 90 ? 90 : newCarPosition,
@@ -48,7 +65,7 @@ const Scale = () => {
 		);
 		// Change the state according to the animation
 		requestRef.current = requestAnimationFrame(animate);
-	}, [selectedCars, speedLimits, trackLength]);
+	}, [redLights, selectedCars, speedLimits, trackLength]);
 
 	useEffect(() => {
 		if (isActive) {
@@ -57,6 +74,27 @@ const Scale = () => {
 			return () => cancelAnimationFrame(requestRef.current);
 		}
 	}, [animate, isActive]);
+
+	// Traffic Light
+	useEffect(() => {
+		const intervalIds = [];
+
+		trafficLights.forEach(({ position, duration }) => {
+			intervalIds.push(
+				setInterval(() => {
+					setRedLights((prevValues) => ({
+						...prevValues,
+						[position]: !prevValues[position],
+					}));
+				}, duration)
+			);
+		});
+
+		return () =>
+			intervalIds.forEach((id) => {
+				clearInterval(id);
+			});
+	}, [trafficLights]);
 
 	return (
 		<>
@@ -84,6 +122,16 @@ const Scale = () => {
 						<div key={position}>
 							<LimitLine position={position} />
 							<SpeedLimit limit={speed} position={position} />
+						</div>
+					))}
+					{trafficLights.map(({ position }) => (
+						<div key={position}>
+							<LimitLine position={position} />
+							<TrafficLight
+								isRedActive={redLights[position]}
+								key={position}
+								position={position}
+							/>
 						</div>
 					))}
 				</Limits>
