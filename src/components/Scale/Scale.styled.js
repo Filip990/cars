@@ -25,3 +25,17 @@ export const CarImage = styled.img`
 	max-height: 100%;
 	position: absolute;
 `;
+
+export const Limits = styled.div`
+	position: relative;
+	width: 100%;
+	height: 100px;
+`;
+
+export const LimitLine = styled.div`
+	position: absolute;
+	top: -12rem;
+	left: ${(props) => `${props.position}%`};
+	height: 12rem;
+	border-left: 2px dashed #666;
+`;
