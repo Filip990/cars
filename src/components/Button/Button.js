@@ -2,13 +2,9 @@ import React from "react";
 
 import { ButtonBase } from "./Button.styled";
 
-const Button = ({ className, children, onClickHandler, isDisabled }) => {
+const Button = ({ className, children, onClick, isDisabled }) => {
 	return (
-		<ButtonBase
-			className={className}
-			onClick={onClickHandler}
-			disabled={isDisabled}
-		>
+		<ButtonBase className={className} onClick={onClick} disabled={isDisabled}>
 			{children}
 		</ButtonBase>
 	);

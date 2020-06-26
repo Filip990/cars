@@ -13,11 +13,11 @@ import {
 	FlipCardBack,
 } from "./Car.styled";
 
-const Car = ({ description, image, name, speed }) => {
+const Car = ({ description, image, name, speed, id }) => {
 	const dispatch = useDispatch();
 
 	const addCar = () => {
-		dispatch(addCarToTestScale({ name: name, speed: speed, image: image }));
+		dispatch(addCarToTestScale({ name, speed, image, id }));
 	};
 
 	return (
