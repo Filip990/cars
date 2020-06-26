@@ -5,6 +5,9 @@ import * as ACTIONS from "./actions";
 
 const initialState = {
 	cars: data.cars,
+	distance: data.distance,
+	speedLimits: data.speed_limits,
+	trafficLights: data.traffic_lights,
 	selectedCars: [],
 };
 
