@@ -20,3 +20,10 @@ export const SearchInput = styled(Input)`
 	outline: none;
 	margin-bottom: 2rem;
 `;
+
+export const NoResults = styled.div`
+	font-size: 2rem;
+	margin: 2rem;
+	font-weight: bold;
+	color: grey;
+`;

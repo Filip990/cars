@@ -3,18 +3,18 @@ import { useSelector } from "react-redux";
 
 import Car from "../Car/Car";
 
-import { Container, SearchInput } from "./CarsInfo.styled";
+import { Container, SearchInput, NoResults } from "./CarsInfo.styled";
 
 const CarsInfo = () => {
 	const { cars } = useSelector((state) => state);
 	const [searchTerm, setSearchTerm] = useState("");
 
-	const handleInputChange = (event) => {
+	const updateSearchTerm = (event) => {
 		setSearchTerm(event.target.value);
 	};
 
 	const filteredCars = cars.filter((car) => {
-		return car.name.toLowerCase().includes(searchTerm);
+		return car.name.toLowerCase().includes(searchTerm.toLowerCase());
 	});
 
 	return (
@@ -22,7 +22,7 @@ const CarsInfo = () => {
 			<SearchInput
 				value={searchTerm}
 				type="search"
-				onChange={handleInputChange}
+				onChange={updateSearchTerm}
 				placeholder="Search"
 			/>
 			<Container>
@@ -30,6 +30,7 @@ const CarsInfo = () => {
 					<Car key={car.id} {...car} />
 				))}
 			</Container>
+			{filteredCars.length === 0 && <NoResults>No Results</NoResults>}
 		</>
 	);
 };

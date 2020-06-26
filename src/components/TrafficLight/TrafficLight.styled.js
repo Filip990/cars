@@ -22,9 +22,6 @@ export const RedLight = styled.div`
 	background: ${(props) => (props.isActive ? "red" : "darkred")};
 `;
 
-export const GreenLight = styled.div`
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
+export const GreenLight = styled(RedLight)`
 	background: ${(props) => (props.isActive ? "lime" : "green")};
 `;

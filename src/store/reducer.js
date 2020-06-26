@@ -24,10 +24,6 @@ const AppReducer = (state = initialState, action) => {
 				}
 				break;
 
-			case ACTIONS.ADD_CAR_SUCCESS:
-				// notify
-				break;
-
 			default:
 				return state;
 		}
