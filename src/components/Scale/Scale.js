@@ -14,6 +14,7 @@ import {
 	CarImage,
 	Limits,
 	LimitLine,
+	AnimationInput,
 } from "./Scale.styled";
 
 const Scale = () => {
@@ -23,6 +24,7 @@ const Scale = () => {
 	const [carPositions, setCarPositions] = useState({});
 	const [isActive, setActive] = useState(false);
 	const [redLights, setRedLights] = useState({});
+	const [animationSpeed, setAnimationSpeed] = useState(1);
 
 	// useRef is here, not to be attached to the DOM, but because changing it's "current" property
 	// won't trigger the re-render
@@ -42,7 +44,8 @@ const Scale = () => {
 				});
 
 				let newCarPosition =
-					(prevPositions[car.id] || 0) + speedLimit / trackLength;
+					(prevPositions[car.id] || 0) +
+					(speedLimit / trackLength) * animationSpeed;
 
 				const redLightsOn = Object.entries(redLights).reduce(
 					(acc, [position, isActive]) => {
@@ -65,7 +68,7 @@ const Scale = () => {
 		);
 		// Change the state according to the animation
 		requestRef.current = requestAnimationFrame(animate);
-	}, [redLights, selectedCars, speedLimits, trackLength]);
+	}, [animationSpeed, redLights, selectedCars, speedLimits, trackLength]);
 
 	useEffect(() => {
 		if (isActive) {
@@ -96,6 +99,10 @@ const Scale = () => {
 			});
 	}, [trafficLights]);
 
+	const updateAnimationSpeed = (e) => {
+		setAnimationSpeed(e.target.value);
+	};
+
 	return (
 		<>
 			<DistanceMeter />
@@ -117,6 +124,7 @@ const Scale = () => {
 						</Track>
 					))}
 				</TracksContainer>
+
 				<Limits>
 					{speedLimits.map(({ position, speed }) => (
 						<div key={position}>
@@ -136,6 +144,12 @@ const Scale = () => {
 					))}
 				</Limits>
 			</Tracks>
+
+			<AnimationInput
+				type="number"
+				value={animationSpeed}
+				onChange={updateAnimationSpeed}
+			/>
 			<Button
 				isDisabled={selectedCars.length < 3}
 				onClick={() => setActive((prevActive) => !prevActive)}

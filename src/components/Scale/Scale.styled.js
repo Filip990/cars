@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import Input from "../Input/Input";
+
 export const Tracks = styled.div`
 	position: relative;
 `;
@@ -38,4 +40,13 @@ export const LimitLine = styled.div`
 	left: ${(props) => `${props.position}%`};
 	height: 12rem;
 	border-left: 2px dashed #666;
+`;
+
+export const AnimationInput = styled(Input)`
+	width: 3rem;
+	margin-right: 2rem;
+	border-radius: 10px;
+	outline: none;
+	padding: 12px 10px;
+	font-weight: bold;
 `;
